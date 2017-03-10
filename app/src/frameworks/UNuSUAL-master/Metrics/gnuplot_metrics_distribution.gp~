@@ -1,0 +1,28 @@
+
+#Setting the terminal
+set terminal png
+set output outputname
+
+#Y axis settings
+set ylabel "Distribution"
+set yrange [0:1000]
+
+#X axis settings
+set xlabel "Intervals"
+
+# Make the x axis labels easier to read.
+set xtics rotate by 45 offset 0,-2
+
+set title "Distribution of the normalized metric"
+
+set label 1 sprintf("average = %s",avg) at 7,900 font "arialbd,12"
+set label 2 sprintf("mean = %s",mean) at 7,800 font "arialbd,12"
+
+# Select histogram data
+set style data histogram
+
+# Give the bars a plain fill pattern, and draw a solid line around them.
+set style fill solid border
+
+set style histogram clustered
+plot datafile using columnplot:xticlabels(1) title columnheader

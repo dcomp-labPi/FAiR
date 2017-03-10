@@ -1,0 +1,24 @@
+
+#Setting the terminal
+set terminal png
+set output outputname
+
+#Setting range
+set yrange [-1:1]
+
+#Setting the title
+set title titlename
+set ylabel "Correlation"
+set xlabel "Metrics compared"
+
+# Make the x axis labels easier to read.
+#set xtics rotate out
+
+# Select histogram data
+set style data histogram
+
+# Give the bars a plain fill pattern, and draw a solid line around them.
+set style fill solid border
+
+#set style histogram clustered
+plot datafile using COL:xticlabels(1) title columnheader

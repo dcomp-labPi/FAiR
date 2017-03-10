@@ -1,0 +1,19 @@
+#Setting the terminal
+set terminal png
+set output outputname
+
+#Y axis settings
+set yrange [0:1]
+set ylabel "Metric"
+
+#X axis settings
+set xlabel "Rank"
+
+set title "Rank of the metric"
+
+set label 1 sprintf("average = %s",avg) at 700,0.8 font "arialbd,12"
+set label 2 sprintf("mean = %s",mean) at 700,0.7 font "arialbd,12"
+
+set style histogram clustered
+plot datafile using columnplot title columnheader
+

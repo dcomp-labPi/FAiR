@@ -1,0 +1,40 @@
+args <- commandArgs(trailingOnly = TRUE)#
+file1 <- args[1]
+fileoutput <- args[2]
+
+
+f1 <- read.table(file1)
+
+pca <- prcomp(f1)
+
+print("Eigenvalues:")
+pca$sd^2
+print(pca)
+summary(pca)
+predict(pca)
+#eigenvalues <- matrix(c(pca$sd^2), ncol=5, byrow=TRUE)
+
+#trunc <- pca$x %*% t(eigenvalues)
+#sink(fileoutput)
+#for (i in 1:nrow(trunc)){
+#    cat(sum(trunc[i,]))
+#    cat("\n")
+#}
+#sink()
+
+eigenvalues <- eigen(cov(f1))$values
+eigenvectors <- eigen(cov(f1))$vectors
+PC <- as.matrix(f1) %*% eigenvectors
+#round(cumsum(eigenvalues)/sum(eigenvalues)*100, digits=2)
+#head(PC)
+
+sink(fileoutput)
+for (i in 1:nrow(f1)){
+    variable <- 0
+    for (j in 1:ncol(f1)){
+        variable <- variable + PC[1,j] * f1[i,j]
+    }
+    cat(variable)
+    cat("\n")
+}
+sink()

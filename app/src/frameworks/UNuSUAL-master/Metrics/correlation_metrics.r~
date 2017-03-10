@@ -1,0 +1,16 @@
+#Rscript for calculating the correlation between two ranked files
+
+args <- commandArgs(trailingOnly = TRUE)
+file1 <- args[1]
+file2 <- args[2]
+outputfile <-args[3]
+
+f1 <- read.table(file1)
+f2 <- read.table(file2)
+
+spearman <- cor.test(f1$V2, f2$V2, method="spearman")
+kendall <- cor.test(f1$V2, f2$V2, method="kendall")
+pearson <- cor.test(f1$V2, f2$V2, method="pearson")
+spearman
+kendall
+pearson

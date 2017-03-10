@@ -1,0 +1,62 @@
+#Reading args
+args <- commandArgs(trailingOnly = TRUE)
+file1 <- args[1]
+fileoutput <- args[2]
+kernelType <- args[3]
+
+#loading library
+library("kernlab")
+library(methods)
+
+#Reading the matrix from file
+f1 <- read.table(file1)
+cat("Kernel: ", kernelType, "\n")
+if (kernelType=="rbfdot"){
+	kpc <- kpca(~., data=f1, kernel="rbfdot", kpar=list(sigma=0.01), th=0.000000000001, features=ncol(f1))
+} else if (kernelType=="polydot"){
+	kpc <- kpca(~., data=f1, kernel="polydot", kpar=list(degree=4, offset=1, scale=3), th=0.000000000001, features=ncol(f1))
+} else if (kernelType=="laplacedot"){
+	kpc <- kpca(~., data=f1, kernel="laplacedot", kpar=list(sigma=0.009), th=0.000000000001, features=ncol(f1))
+} else if (kernelType=="vanilladot"){
+	kpc <- kpca(~., data=f1, kernel="vanilladot", kpar=list(), th=0.000000000001, features=ncol(f1))
+} else if (kernelType=="tanhdot"){
+	kpc <- kpca(~., data=f1, kernel="tanhdot", kpar=list(scale=0.1, offset=2), th=0.000000000001, features=ncol(f1))
+} else if (kernelType=="besseldot"){
+	kpc <- kpca(~., data=f1, kernel="besseldot", kpar=list(sigma=1, order=0.1, degree=0.1), th=0.000000000001, features=ncol(f1))
+} else if (kernelType=="anovadot"){
+	kpc <- kpca(~., data=f1, kernel="anovadot", kpar=list(sigma=0.1, degree=0.1), th=0.000000000001, features=ncol(f1))
+} else if (kernelType=="splinedot"){
+	kpc <- kpca(~., data=f1, kernel="splinedot", kpar=list(), th=0.000000000001, features=ncol(f1))
+}
+
+print("Eigenvalues:")
+eig(kpc)
+
+eigvalues = eig(kpc);
+print("Variance:")
+for (i in eigvalues){
+    print(i/sum(eigvalues))
+}
+
+pcv(kpc)
+
+
+sink(fileoutput)
+for (i in 1:nrow(f1)){
+    variable <- 0
+    for (j in 1:ncol(f1)){
+        variable <- variable + pcv(kpc)[1,j] * f1[i,j]
+    }
+    cat(variable)
+    cat("\n")
+}
+sink()
+
+#kpc <- kha(~., data=f1, kernel="rbfdot", kpar=list(sigma=0.2), features=1)
+
+#sink(fileoutput2)
+#for (i in 1:nrow(pcv(kpc))){
+#    cat(pcv(kpc)[i])
+#    cat("\n")
+#}
+#sink()

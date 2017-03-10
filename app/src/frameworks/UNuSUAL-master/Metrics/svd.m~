@@ -1,0 +1,16 @@
+
+f1 = dlmread("filename.txt"," ");
+ndim = 5;
+fname = "outputsvd.txt"
+
+[U,S,V] = svd(f1);
+
+fid = fopen(fname,'w');
+for i = 1:nrow(f1)
+	variable = 0;
+	for (j = 1:ndim)
+		variable = variable + V(1,j) * f1(i,j);
+	end
+	fprintf(fid,'%d\n',variable);
+end
+fclose(fid);
