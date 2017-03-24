@@ -14,7 +14,7 @@ from plotGraphs import plot_graphs_bar
 def feature_extraction(dic_u_training, dic_i_training, users, items, amount_ratings, output_file, parameters):
 
     # settings output Directory
-    output_directory = output_file + 'featureExtraction'
+    output_directory = output_file + 'Domain Profiling'
 
     # create output directory if it does not exist
     try:

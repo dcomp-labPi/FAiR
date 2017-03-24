@@ -16,7 +16,7 @@ def quality_analysis(dic_u_test,  dic_u_top, matrix_top_n, matrix_ratings,
                      average_note_user, users, amount_n, output_file, parameters):
 
     # settings output Directory
-    output_directory = output_file + 'qualityAnalysis'
+    output_directory = output_file + 'Effectiveness-based'
 
     # create output directory if it does not exist
     try:

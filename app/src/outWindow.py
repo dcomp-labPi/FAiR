@@ -10,7 +10,7 @@ import pickle
 
 class feature_window(Gtk.Window):
     def __init__(self, window, parameters):
-        Gtk.Window.__init__(self, title="Data Feature Extraction")
+        Gtk.Window.__init__(self, title="Data Domain Profiling")
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
         vbox.set_homogeneous(False)
@@ -19,7 +19,7 @@ class feature_window(Gtk.Window):
         vbox.set_margin_bottom(30)
         vbox.set_margin_left(30)
 
-        label = Gtk.Label("Data output from feature extraction")
+        label = Gtk.Label("Data output from Domain Profiling")
         vbox.pack_start(label, True, True, 0)
 
         if parameters['feature_items']:
@@ -34,13 +34,13 @@ class feature_window(Gtk.Window):
             btn_popularity_g = Gtk.Button(label="View Graph")
             btn_popularity_g.set_size_request(100, 0)
             btn_popularity_g.connect("clicked", self.open_object,
-                                     parameters['folder_output'] + '/featureExtraction/popularity.eps')
+                                     parameters['folder_output'] + '/Domain Profiling/popularity.eps')
             hbox_popularity.pack_start(btn_popularity_g, True, True, 0)
 
             btn_popularity_t = Gtk.Button(label="View Text")
             btn_popularity_t.set_size_request(100, 0)
             btn_popularity_t.connect("clicked", self.open_object,
-                                     parameters['folder_output'] + '/featureExtraction/popularity.txt')
+                                     parameters['folder_output'] + '/Domain Profiling/popularity.txt')
             hbox_popularity.pack_start(btn_popularity_t, True, True, 0)
             vbox.pack_start(hbox_popularity, True, True, 0)
 
@@ -55,13 +55,13 @@ class feature_window(Gtk.Window):
             button_ani_g = Gtk.Button(label="View Graph")
             button_ani_g.set_size_request(100, 0)
             button_ani_g.connect("clicked", self.open_object,
-                                 parameters['folder_output'] + '/featureExtraction/averageNote-items.eps')
+                                 parameters['folder_output'] + '/Domain Profiling/averageNote-items.eps')
             hbox_ani.pack_start(button_ani_g, True, True, 0)
 
             button_ani_t = Gtk.Button(label="View Text")
             button_ani_t.set_size_request(100, 0)
             button_ani_t.connect("clicked", self.open_object,
-                                 parameters['folder_output'] + '/featureExtraction/averageNote-items.txt')
+                                 parameters['folder_output'] + '/Domain Profiling/averageNote-items.txt')
             hbox_ani.pack_start(button_ani_t, True, True, 0)
             vbox.pack_start(hbox_ani, True, True, 0)
 
@@ -76,13 +76,13 @@ class feature_window(Gtk.Window):
             button_vin_g = Gtk.Button(label="View Graph")
             button_vin_g.set_size_request(100, 0)
             button_vin_g.connect("clicked", self.open_object,
-                                 parameters['folder_output'] + '/featureExtraction/variance-items.eps')
+                                 parameters['folder_output'] + '/Domain Profiling/variance-items.eps')
             hbox_vin.pack_start(button_vin_g, True, True, 0)
 
             button_vin_t = Gtk.Button(label="View Text")
             button_vin_t.set_size_request(100, 0)
             button_vin_t.connect("clicked", self.open_object,
-                                 parameters['folder_output'] + '/featureExtraction/variance-items.txt')
+                                 parameters['folder_output'] + '/Domain Profiling/variance-items.txt')
             hbox_vin.pack_start(button_vin_t, True, True, 0)
             vbox.pack_start(hbox_vin, True, True, 0)
 
@@ -98,13 +98,13 @@ class feature_window(Gtk.Window):
             button_historic_g = Gtk.Button(label="View Graph")
             button_historic_g.set_size_request(100, 0)
             button_historic_g.connect("clicked", self.open_object,
-                                      parameters['folder_output'] + '/featureExtraction/historic.eps')
+                                      parameters['folder_output'] + '/Domain Profiling/historic.eps')
             hbox_historic.pack_start(button_historic_g, True, True, 0)
 
             button_historic_t = Gtk.Button(label="View Text")
             button_historic_t.set_size_request(100, 0)
             button_historic_t.connect("clicked", self.open_object,
-                                      parameters['folder_output'] + '/featureExtraction/historic.txt')
+                                      parameters['folder_output'] + '/Domain Profiling/historic.txt')
             hbox_historic.pack_start(button_historic_t, True, True, 0)
             vbox.pack_start(hbox_historic, True, True, 0)
 
@@ -119,13 +119,13 @@ class feature_window(Gtk.Window):
             button_anu_g = Gtk.Button(label="View Graph")
             button_anu_g.set_size_request(100, 0)
             button_anu_g.connect("clicked", self.open_object,
-                                 parameters['folder_output'] + '/featureExtraction/averageNote-users.eps')
+                                 parameters['folder_output'] + '/Domain Profiling/averageNote-users.eps')
             hbox_anu.pack_start(button_anu_g, True, True, 0)
 
             button_anu_t = Gtk.Button(label="View Text")
             button_anu_t.set_size_request(100, 0)
             button_anu_t.connect("clicked", self.open_object,
-                                 parameters['folder_output'] + '/featureExtraction/averageNote-users.txt')
+                                 parameters['folder_output'] + '/Domain Profiling/averageNote-users.txt')
             hbox_anu.pack_start(button_anu_t, True, True, 0)
             vbox.pack_start(hbox_anu, True, True, 0)
 
@@ -140,13 +140,13 @@ class feature_window(Gtk.Window):
             button_vun_g = Gtk.Button(label="View Graph")
             button_vun_g.set_size_request(100, 0)
             button_vun_g.connect("clicked", self.open_object,
-                                 parameters['folder_output'] + '/featureExtraction/variance-users.eps')
+                                 parameters['folder_output'] + '/Domain Profiling/variance-users.eps')
             hbox_vun.pack_start(button_vun_g, True, True, 0)
 
             button_vun_t = Gtk.Button(label="View Text")
             button_vun_t.set_size_request(100, 0)
             button_vun_t.connect("clicked", self.open_object,
-                                 parameters['folder_output'] + '/featureExtraction/variance-users.txt')
+                                 parameters['folder_output'] + '/Domain Profiling/variance-users.txt')
             hbox_vun.pack_start(button_vun_t, True, True, 0)
             vbox.pack_start(hbox_vun, True, True, 0)
 
@@ -161,13 +161,13 @@ class feature_window(Gtk.Window):
             button_pr_g = Gtk.Button(label="View Graph")
             button_pr_g.set_size_request(100, 0)
             button_pr_g.connect("clicked", self.open_object,
-                                parameters['folder_output'] + '/featureExtraction/probability_ratings.eps')
+                                parameters['folder_output'] + '/Domain Profiling/probability_ratings.eps')
             hbox_pr.pack_start(button_pr_g, True, True, 0)
 
             button_pr_t = Gtk.Button(label="View Text")
             button_pr_t.set_size_request(100, 0)
             button_pr_t.connect("clicked", self.open_object,
-                                parameters['folder_output'] + '/featureExtraction/probability_ratings.txt')
+                                parameters['folder_output'] + '/Domain Profiling/probability_ratings.txt')
             hbox_pr.pack_start(button_pr_t, True, True, 0)
             vbox.pack_start(hbox_pr, True, True, 0)
 
@@ -187,7 +187,7 @@ class feature_window(Gtk.Window):
 
 class quality_window(Gtk.Window):
     def __init__(self, window, parameters, name_recommender):
-        Gtk.Window.__init__(self, title="Data Quality Analisys")
+        Gtk.Window.__init__(self, title="Data Effectiveness-based")
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
         vbox.set_homogeneous(False)
@@ -196,7 +196,7 @@ class quality_window(Gtk.Window):
         vbox.set_margin_bottom(30)
         vbox.set_margin_left(30)
 
-        label = Gtk.Label(name_recommender + " : Data output from quality analisys")
+        label = Gtk.Label(name_recommender + " : Data output from Effectiveness-based")
         vbox.pack_start(label, True, True, 0)
 
         if parameters['mae_mse_accuracy']:
@@ -212,14 +212,14 @@ class quality_window(Gtk.Window):
             btn_mae_g.set_size_request(100, 0)
             btn_mae_g.connect("clicked", self.open_object,
                               parameters['folder_output'] + "/" + name_recommender
-                              + '/qualityAnalysis/mean-absolute-error.eps')
+                              + '/Effectiveness-based/mean-absolute-error.eps')
             hbox_mae.pack_start(btn_mae_g, True, True, 0)
 
             btn_mae_t = Gtk.Button(label="View Text")
             btn_mae_t.set_size_request(100, 0)
             btn_mae_t.connect("clicked", self.open_object,
                               parameters['folder_output'] + "/" + name_recommender
-                              + '/qualityAnalysis/mean-absolute-error.txt')
+                              + '/Effectiveness-based/mean-absolute-error.txt')
             hbox_mae.pack_start(btn_mae_t, True, True, 0)
             vbox.pack_start(hbox_mae, True, True, 0)
 
@@ -235,14 +235,14 @@ class quality_window(Gtk.Window):
             button_rmse_g.set_size_request(100, 0)
             button_rmse_g.connect("clicked", self.open_object,
                                   parameters['folder_output'] + "/" + name_recommender
-                                  + '/qualityAnalysis/root-mean-squared-error.eps')
+                                  + '/Effectiveness-based/root-mean-squared-error.eps')
             hbox_rmse.pack_start(button_rmse_g, True, True, 0)
 
             button_rmse_t = Gtk.Button(label="View Text")
             button_rmse_t.set_size_request(100, 0)
             button_rmse_t.connect("clicked", self.open_object,
                                   parameters['folder_output'] + "/" + name_recommender
-                                  + '/qualityAnalysis/root-mean-squared-error.txt')
+                                  + '/Effectiveness-based/root-mean-squared-error.txt')
             hbox_rmse.pack_start(button_rmse_t, True, True, 0)
             vbox.pack_start(hbox_rmse, True, True, 0)
 
@@ -258,14 +258,14 @@ class quality_window(Gtk.Window):
             button_accuracy_g.set_size_request(100, 0)
             button_accuracy_g.connect("clicked", self.open_object,
                                       parameters['folder_output'] + "/" + name_recommender
-                                      + '/qualityAnalysis/accuracy.eps')
+                                      + '/Effectiveness-based/accuracy.eps')
             hbox_accuracy.pack_start(button_accuracy_g, True, True, 0)
 
             button_accuracy_t = Gtk.Button(label="View Text")
             button_accuracy_t.set_size_request(100, 0)
             button_accuracy_t.connect("clicked", self.open_object,
                                       parameters['folder_output'] + "/" + name_recommender
-                                      + '/qualityAnalysis/accuracy.txt')
+                                      + '/Effectiveness-based/accuracy.txt')
             hbox_accuracy.pack_start(button_accuracy_t, True, True, 0)
             vbox.pack_start(hbox_accuracy, True, True, 0)
 
@@ -282,14 +282,14 @@ class quality_window(Gtk.Window):
             button_dp_g.set_size_request(100, 0)
             button_dp_g.connect("clicked", self.open_object,
                                 parameters['folder_output'] + "/" + name_recommender
-                                + '/qualityAnalysis/distributionPrecision.eps')
+                                + '/Effectiveness-based/distributionPrecision.eps')
             hbox_dp.pack_start(button_dp_g, True, True, 0)
 
             button_dp_t = Gtk.Button(label="View Text")
             button_dp_t.set_size_request(100, 0)
             button_dp_t.connect("clicked", self.open_object,
                                 parameters['folder_output'] + "/" + name_recommender
-                                + '/qualityAnalysis/distributionPrecision.txt')
+                                + '/Effectiveness-based/distributionPrecision.txt')
             hbox_dp.pack_start(button_dp_t, True, True, 0)
             vbox.pack_start(hbox_dp, True, True, 0)
 
@@ -305,14 +305,14 @@ class quality_window(Gtk.Window):
             button_dr_g.set_size_request(100, 0)
             button_dr_g.connect("clicked", self.open_object,
                                 parameters['folder_output'] + "/" + name_recommender
-                                + '/qualityAnalysis/distributionRecall.eps')
+                                + '/Effectiveness-based/distributionRecall.eps')
             hbox_dr.pack_start(button_dr_g, True, True, 0)
 
             button_dr_t = Gtk.Button(label="View Text")
             button_dr_t.set_size_request(100, 0)
             button_dr_t.connect("clicked", self.open_object,
                                 parameters['folder_output'] + "/" + name_recommender
-                                + '/qualityAnalysis/distributionRecall.txt')
+                                + '/Effectiveness-based/distributionRecall.txt')
             hbox_dr.pack_start(button_dr_t, True, True, 0)
             vbox.pack_start(hbox_dr, True, True, 0)
 
@@ -328,14 +328,14 @@ class quality_window(Gtk.Window):
             button_dcp_g.set_size_request(100, 0)
             button_dcp_g.connect("clicked", self.open_object,
                                  parameters['folder_output'] + "/" + name_recommender
-                                 + '/qualityAnalysis/distributionPrecisionCumulative.eps')
+                                 + '/Effectiveness-based/distributionPrecisionCumulative.eps')
             hbox_dcp.pack_start(button_dcp_g, True, True, 0)
 
             button_dcp_t = Gtk.Button(label="View Text")
             button_dcp_t.set_size_request(100, 0)
             button_dcp_t.connect("clicked", self.open_object,
                                  parameters['folder_output'] + "/" + name_recommender
-                                 + '/qualityAnalysis/distributionPrecisionCumulative.txt')
+                                 + '/Effectiveness-based/distributionPrecisionCumulative.txt')
             hbox_dcp.pack_start(button_dcp_t, True, True, 0)
             vbox.pack_start(hbox_dcp, True, True, 0)
 
@@ -351,14 +351,14 @@ class quality_window(Gtk.Window):
             button_dcr_g.set_size_request(100, 0)
             button_dcr_g.connect("clicked", self.open_object,
                                  parameters['folder_output'] + "/" + name_recommender
-                                 + '/qualityAnalysis/distributionRecallCumulative.eps')
+                                 + '/Effectiveness-based/distributionRecallCumulative.eps')
             hbox_dcr.pack_start(button_dcr_g, True, True, 0)
 
             button_dcr_t = Gtk.Button(label="View Text")
             button_dcr_t.set_size_request(100, 0)
             button_dcr_t.connect("clicked", self.open_object,
                                  parameters['folder_output'] + "/" + name_recommender
-                                 + '/qualityAnalysis/distributionRecallCumulative.txt')
+                                 + '/Effectiveness-based/distributionRecallCumulative.txt')
             hbox_dcr.pack_start(button_dcr_t, True, True, 0)
             vbox.pack_start(hbox_dcr, True, True, 0)
 
@@ -374,14 +374,14 @@ class quality_window(Gtk.Window):
             button_hmpr_g.set_size_request(100, 0)
             button_hmpr_g.connect("clicked", self.open_object,
                                   parameters['folder_output'] + "/" + name_recommender
-                                  + '/qualityAnalysis/harmonic-mean-precision-recall.eps')
+                                  + '/Effectiveness-based/harmonic-mean-precision-recall.eps')
             hbox_hmpr.pack_start(button_hmpr_g, True, True, 0)
 
             button_hmpr_t = Gtk.Button(label="View Text")
             button_hmpr_t.set_size_request(100, 0)
             button_hmpr_t.connect("clicked", self.open_object,
                                   parameters['folder_output'] + "/" + name_recommender
-                                  + '/qualityAnalysis/harmonic-mean-precision-recall.txt')
+                                  + '/Effectiveness-based/harmonic-mean-precision-recall.txt')
             hbox_hmpr.pack_start(button_hmpr_t, True, True, 0)
             vbox.pack_start(hbox_hmpr, True, True, 0)
 
@@ -397,14 +397,14 @@ class quality_window(Gtk.Window):
             button_ap_g.set_size_request(100, 0)
             button_ap_g.connect("clicked", self.open_object,
                                 parameters['folder_output'] + "/" + name_recommender
-                                + '/qualityAnalysis/average-precision.eps')
+                                + '/Effectiveness-based/average-precision.eps')
             hbox_ap.pack_start(button_ap_g, True, True, 0)
 
             button_ap_t = Gtk.Button(label="View Text")
             button_ap_t.set_size_request(100, 0)
             button_ap_t.connect("clicked", self.open_object,
                                 parameters['folder_output'] + "/" + name_recommender
-                                + '/qualityAnalysis/average-precision.txt')
+                                + '/Effectiveness-based/average-precision.txt')
             hbox_ap.pack_start(button_ap_t, True, True, 0)
             vbox.pack_start(hbox_ap, True, True, 0)
 
@@ -418,7 +418,7 @@ class quality_window(Gtk.Window):
 
             try:
                 file = open(parameters['folder_output'] + "/" + name_recommender
-                            + '/qualityAnalysis/mean-average-precision.txt', 'r')
+                            + '/Effectiveness-based/mean-average-precision.txt', 'r')
                 value = file.readline()
             except Exception:
                 value = 'open error'
@@ -446,7 +446,7 @@ class quality_window(Gtk.Window):
 
 class business_window(Gtk.Window):
     def __init__(self, window, parameters, name_recommender):
-        Gtk.Window.__init__(self, title="Data Business Metrics")
+        Gtk.Window.__init__(self, title="Data Complementary Dimensions of Quality")
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
         vbox.set_homogeneous(False)
@@ -455,7 +455,7 @@ class business_window(Gtk.Window):
         vbox.set_margin_bottom(30)
         vbox.set_margin_left(30)
 
-        label = Gtk.Label("REC" + " : Data output from business metrics")
+        label = Gtk.Label("REC" + " : Data output from Complementary Dimensions of Quality")
         vbox.pack_start(label, True, True, 0)
 
         if parameters['diversity_novelty']:
@@ -471,14 +471,14 @@ class business_window(Gtk.Window):
             btn_diversity_g.set_size_request(100, 0)
             btn_diversity_g.connect("clicked", self.open_object,
                                     parameters['folder_output'] + "/" + name_recommender
-                                    + '/businessMetrics/diversityNovelty/diversity.eps')
+                                    + '/Complementary Dimensions of Quality/diversityNovelty/diversity.eps')
             hbox_diversity.pack_start(btn_diversity_g, True, True, 0)
 
             btn_diversity_t = Gtk.Button(label="View Text")
             btn_diversity_t.set_size_request(100, 0)
             btn_diversity_t.connect("clicked", self.open_object,
                                     parameters['folder_output'] + "/" + name_recommender
-                                    + '/businessMetrics/diversityNovelty/diversity.txt')
+                                    + '/Complementary Dimensions of Quality/diversityNovelty/diversity.txt')
             hbox_diversity.pack_start(btn_diversity_t, True, True, 0)
             vbox.pack_start(hbox_diversity, True, True, 0)
 
@@ -494,14 +494,14 @@ class business_window(Gtk.Window):
             button_novelty_g.set_size_request(100, 0)
             button_novelty_g.connect("clicked", self.open_object,
                                      parameters['folder_output'] + "/" + name_recommender
-                                     + '/businessMetrics/diversityNovelty/novelty.eps')
+                                     + '/Complementary Dimensions of Quality/diversityNovelty/novelty.eps')
             hbox_novelty.pack_start(button_novelty_g, True, True, 0)
 
             button_novelty_t = Gtk.Button(label="View Text")
             button_novelty_t.set_size_request(100, 0)
             button_novelty_t.connect("clicked", self.open_object,
                                      parameters['folder_output'] + "/" + name_recommender
-                                     + '/businessMetrics/diversityNovelty/novelty.txt')
+                                     + '/Complementary Dimensions of Quality/diversityNovelty/novelty.txt')
             hbox_novelty.pack_start(button_novelty_t, True, True, 0)
             vbox.pack_start(hbox_novelty, True, True, 0)
 
@@ -518,14 +518,14 @@ class business_window(Gtk.Window):
             button_serendipity_g.set_size_request(100, 0)
             button_serendipity_g.connect("clicked", self.open_object,
                                          parameters['folder_output'] + "/" + name_recommender
-                                         + '/businessMetrics/serendipity/serendipity.eps')
+                                         + '/Complementary Dimensions of Quality/serendipity/serendipity.eps')
             hbox_serendipity.pack_start(button_serendipity_g, True, True, 0)
 
             button_serendipity_t = Gtk.Button(label="View Text")
             button_serendipity_t.set_size_request(100, 0)
             button_serendipity_t.connect("clicked", self.open_object,
                                          parameters['folder_output'] + "/" + name_recommender
-                                         + '/businessMetrics/serendipity/serendipity.txt')
+                                         + '/Complementary Dimensions of Quality/serendipity/serendipity.txt')
             hbox_serendipity.pack_start(button_serendipity_t, True, True, 0)
             vbox.pack_start(hbox_serendipity, True, True, 0)
 
@@ -540,7 +540,7 @@ class business_window(Gtk.Window):
 
             try:
                 file = open(parameters['folder_output'] + "/" + name_recommender
-                            + '/businessMetrics/catalog-coverage.txt', 'r')
+                            + '/Complementary Dimensions of Quality/catalog-coverage.txt', 'r')
                 value = file.readline()
             except Exception:
                 value = 'open error'
@@ -563,7 +563,7 @@ class business_window(Gtk.Window):
 
             try:
                 file = open(parameters['folder_output'] + "/" + name_recommender
-                            + '/businessMetrics/genreCoverage/genre-coverage-unique-value.txt', 'r')
+                            + '/Complementary Dimensions of Quality/genreCoverage/genre-coverage-unique-value.txt', 'r')
                 value = file.readline()
             except Exception:
                 value = 'open error'
@@ -578,7 +578,7 @@ class business_window(Gtk.Window):
             button_gc_g.set_size_request(100, 0)
             button_gc_g.connect("clicked", self.open_object,
                                 parameters['folder_output'] + "/" + name_recommender
-                                + '/businessMetrics/genreCoverage/genre-coverage-users.eps')
+                                + '/Complementary Dimensions of Quality/genreCoverage/genre-coverage-users.eps')
             hbox_gc.pack_start(button_gc_g, True, True, 0)
             vbox.pack_start(hbox_gc, True, True, 0)
 
@@ -648,7 +648,7 @@ class Window(Gtk.Window):
 
                 if parameters['mae_mse_accuracy'] or parameters['precision_recall']:
 
-                    label = Gtk.Label("Quality Analisys")
+                    label = Gtk.Label("Effectiveness-based")
                     label.set_xalign(0.1)
                     label.set_size_request(200, 0)
                     hbox_q_analisys = Gtk.Box(spacing=10)
@@ -663,7 +663,7 @@ class Window(Gtk.Window):
                 if parameters['diversity_novelty'] or parameters['genre_coverage'] or parameters['catalog_coverage'] \
                         or parameters['serendipity']:
 
-                    label = Gtk.Label("Business Metrics")
+                    label = Gtk.Label("Complementary Dimensions of Quality")
                     label.set_xalign(0.1)
                     label.set_size_request(200, 0)
                     hbox_b_metrics = Gtk.Box(spacing=10)

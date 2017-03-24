@@ -70,10 +70,10 @@ def runFramework(window, config):
     # FEATURES EXTRACTION
     ############################################################################
     if window.parameters['feature_extraction']:
-        print("features extraction")
+        print("Domain Profiling")
         config['loader_weight'] += 2
         value = config['loader_weight'] * config['loader_value']
-        text = 'Executing Feature Extraction'
+        text = 'Executing Domain Profiling'
         send_message(loader_window, value, text)
         average_note_user = feature_extraction(dic_u_training, dic_i_training, users, items, amount_ratings,
                                                output_file, window.parameters)
@@ -136,10 +136,10 @@ def runFramework(window, config):
             # QUALITY ANALYSIS
             ############################################################################
             if window.parameters['quality_analysis']:
-                print(name_recommender + ": quality analysis")
+                print(name_recommender + ": Effectiveness-based")
                 config['loader_weight'] += 3
                 value = config['loader_weight'] * config['loader_value']
-                text = name_recommender + ': Executing Quality Analysis'
+                text = name_recommender + ': Executing Effectiveness-based'
                 send_message(loader_window, value, text)
                 quality_analysis(dic_u_test, dic_u_top, matrix_top_n,
                                  matrix_ratings, average_note_user, users, amount_n, output_file, window.parameters)
@@ -150,7 +150,7 @@ def runFramework(window, config):
             if window.parameters['diversity_novelty'] or window.parameters['catalog_coverage'] \
                     or window.parameters['serendipity'] or window.parameters['genre_coverage']:
                 # settings output Directory
-                output_directory = output_file + 'businessMetrics'
+                output_directory = output_file + 'Complementary Dimensions of Quality'
 
                 # create output directory if it does not exist
                 try:
@@ -218,7 +218,7 @@ def runFramework(window, config):
             amount_n = int(window.parameters['file_recommender'][j][2])
 
             # settings output Directory
-            output_directory = output_root + name_recommender + '/businessMetrics'
+            output_directory = output_root + name_recommender + '/Complementary Dimensions of Quality'
             # create output directory if it does not exist
             try:
                 if not os.path.exists(output_directory):
