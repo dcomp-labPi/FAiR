@@ -150,7 +150,7 @@ def runFramework(window, config):
             if window.parameters['diversity_novelty'] or window.parameters['catalog_coverage'] \
                     or window.parameters['serendipity'] or window.parameters['genre_coverage']:
                 # settings output Directory
-                output_directory = output_file + 'Complementary Dimensions of Quality'
+                output_directory = output_file + 'Complementary_Dimensions_of_Quality'
 
                 # create output directory if it does not exist
                 try:
@@ -218,7 +218,7 @@ def runFramework(window, config):
             amount_n = int(window.parameters['file_recommender'][j][2])
 
             # settings output Directory
-            output_directory = output_root + name_recommender + '/Complementary Dimensions of Quality'
+            output_directory = output_root + name_recommender + '/Complementary_Dimensions_of_Quality'
             # create output directory if it does not exist
             try:
                 if not os.path.exists(output_directory):
