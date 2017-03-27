@@ -10,7 +10,7 @@ Domain Profiling: Collection features used.
 
 # Requirements
 
-Python from version 2.7 available at: (https://www.python.org/).
+Python from version 3 available at: (https://www.python.org/).
 
 # Installation
 
