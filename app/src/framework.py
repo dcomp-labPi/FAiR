@@ -258,7 +258,7 @@ def runFramework(window, config):
     with open(frame_path + '/list_file_recommender.txt', 'wb') as fp:
         pickle.dump(window.parameters['file_recommender'], fp)
 
-    os.system("python %s %d %d %s %s %r %r %r %r %r %r %r %r" % (
+    os.system("python3 %s %d %d %s %s %r %r %r %r %r %r %r %r" % (
         frame_path + "/src/outWindow.py",
         users,
         items,
