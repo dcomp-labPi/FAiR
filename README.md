@@ -10,8 +10,9 @@ Domain Profiling: Collection features used.
 
 # Requirements
 
-Python from version 2.7 available at: https://www.python.org/
-Pip available at: https://pip.pypa.io/en/stable/installing/
+Python from version 2.7 available at: (https://www.python.org/).
+
+Pip available at: (https://pip.pypa.io/en/stable/installing/).
 
 # Installation
 
@@ -19,5 +20,6 @@ All the necessary libraries are in the file "lib-dependencies.txt", in order to 
 
 To install the libraries, navigate to the framework directory and use the following command:
 
-	'''bash
-	pip install -r lib-dependencies.txt
+```bash
+$ pip install -r lib-dependencies.txt
+```
