@@ -116,7 +116,7 @@
                 <property name="halign">start</property>
                 <property name="margin_left">15</property>
                 <property name="margin_top">10</property>
-                <property name="label" translatable="yes">userId itemId:ranting itemId:rating</property>
+                <property name="label" translatable="yes">userId itemId:ranting itemId: rating</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -201,10 +201,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label2">
+              <object class="GtkLabel" id="label23">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">First line has all the features with delimiter ::, the next lines have the characteristics of items, an item for the line</property>
+                <property name="halign">start</property>
+                <property name="margin_left">15</property>
+                <property name="margin_top">10</property>
+                <property name="label" translatable="yes">feature1::feature2::feature3...</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -213,60 +216,18 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label23">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="margin_left">15</property>
-                <property name="margin_top">10</property>
-                <property name="label" translatable="yes">feature1::feature2::feature3</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="label24">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
                 <property name="margin_left">15</property>
-                <property name="label" translatable="yes">itemId 1 0 1</property>
+                <property name="margin_top">10</property>
+                <property name="label" translatable="yes">itemId 1 0 1 0 1 0 0 1...</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label3">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="opacity">0.96999999999999997</property>
-                <property name="halign">start</property>
-                <property name="label" translatable="yes">itemId 0 0 1</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">4</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label26">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="margin_left">185</property>
-                <property name="label" translatable="yes">.</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">5</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -280,7 +241,21 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">6</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label26">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin_left">185</property>
+                <property name="label" translatable="yes">.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
               </packing>
             </child>
             <child>
@@ -294,7 +269,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">7</property>
+                <property name="position">5</property>
               </packing>
             </child>
           </object>
