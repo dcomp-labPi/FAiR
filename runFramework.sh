@@ -2,6 +2,6 @@
 
 cd app
 
-python app.py
+python3 app.py
 
 exit
