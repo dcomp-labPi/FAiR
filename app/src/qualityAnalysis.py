@@ -113,7 +113,7 @@ def quality_analysis(dic_u_test,  dic_u_top, matrix_top_n, matrix_ratings,
         average_precision = np.array(precision)
         for i in range(users):
             (precision[i], recall[i], average_precision[i]) = precision_recall(dic_u_test, matrix_top_n[i],
-                                                                               average_note_user[i], amount_n,
+                                                                               average_note_user[dic_u_top[i]], amount_n,
                                                                                dic_u_top[i])
 
         ############################################################################
@@ -127,10 +127,12 @@ def quality_analysis(dic_u_test,  dic_u_top, matrix_top_n, matrix_ratings,
         ############################################################################
         # calculate harmonic mean of precision and recall
         ############################################################################
-        try:
-            vector_analysis = (2 * precision * recall) / (precision + recall)
-        except (ArithmeticError, RuntimeWarning):
-            vector_analysis = (2 * precision * recall) / 1
+        vector_analysis = np.zeros(users)
+        for k in range(users):
+            if (precision[k] + recall[k]) == 0:
+                vector_analysis[k] = (2 * precision[k] + recall[k]) / 1
+            else:
+                vector_analysis[k] = (2 * precision[k] + recall[k]) / (precision[k] + recall[k])
         vector_analysis = np.array(vector_analysis[np.invert(np.isnan(vector_analysis))])
         # sort the vector
         vector_analysis = np.sort(vector_analysis)[::-1]

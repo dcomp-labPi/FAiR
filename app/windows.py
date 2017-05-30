@@ -7,6 +7,8 @@ from gi.repository import Gtk, GObject
 import sys
 
 import fileChooser
+from generateTrainTestInput import *
+from generateFeaturesItems import *
 
 
 class infoWindow(Gtk.Window):
@@ -52,6 +54,12 @@ class generateTrainTestWindow(Gtk.Window):
         self.params['file'] = None
         self.params['folder_out'] = None
 
+        # set action Train Percent
+        self.entryTrainPerc = builder.get_object("entryTrainPerc")
+
+        # set action Delimeter
+        self.entryDelimiter = builder.get_object("entryDelimiter")
+
         # set action Data File Chooser
         self.lbDataFile = builder.get_object("lbDataFile")
         btnDataFile = builder.get_object("btnDataFile")
@@ -60,7 +68,7 @@ class generateTrainTestWindow(Gtk.Window):
         # set action Output Folder Chooser
         self.lbFolderOutput = builder.get_object("lbFolderOutput")
         btnFolderOutput = builder.get_object("btnFolderOutput")
-        btnFolderOutput.connect("clicked", self.fChooser.on_folder_clicked, self.lbFolderOutput, self,
+        btnFolderOutput.connect("clicked", self.fChooser.on_folder_clicked, self.lbFolderOutput, self.params,
                                 'folder_out')
 
         # set action Run
@@ -78,9 +86,12 @@ class generateTrainTestWindow(Gtk.Window):
         if (self.btnRun.get_label() == "Run"):
             self.spinner.start()
             self.btnRun.set_sensitive(False)
-        # self.btnRun.set_label("Close")
-        # self.spinner.stop()
-        # self.btnRun.set_sensitive(True)
+            if generate_train_test_input(self.params['file'], self, self.entryTrainPerc.get_text(), self.entryDelimiter.get_text(), self.params['folder_out']):
+                self.btnRun.set_label("Close")
+                self.spinner.stop()
+                self.btnRun.set_sensitive(True)
+            else:
+                self.btnRun.set_label("Error in file - Close")
         else:
             Gtk.main_quit()
             self.windowApp.destroy()
@@ -111,7 +122,7 @@ class generateFeatureWindow(Gtk.Window):
         # set action Output Folder Chooser
         self.lbFolderOutput = builder.get_object("lbFolderOutput")
         btnFolderOutput = builder.get_object("btnFolderOutput")
-        btnFolderOutput.connect("clicked", self.fChooser.on_folder_clicked, self.lbFolderOutput, self,
+        btnFolderOutput.connect("clicked", self.fChooser.on_folder_clicked, self.lbFolderOutput, self.params,
                                 'folder_out')
 
         # set action Run
@@ -129,9 +140,14 @@ class generateFeatureWindow(Gtk.Window):
         if (self.btnRun.get_label() == "Run"):
             self.spinner.start()
             self.btnRun.set_sensitive(False)
-            # self.btnRun.set_label("Close")
-            # self.spinner.stop()
-            # self.btnRun.set_sensitive(True)
+            if generate_features_file(self.params['file'], self, self.params['folder_out']):
+                self.btnRun.set_label("Close")
+                self.spinner.stop()
+                self.btnRun.set_sensitive(True)
+            else:
+                self.btnRun.set_label("Error in file - Close")
+                self.spinner.stop()
+                self.btnRun.set_sensitive(True)
         else:
             Gtk.main_quit()
             self.windowApp.destroy()

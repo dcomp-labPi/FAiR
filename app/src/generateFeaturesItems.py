@@ -9,7 +9,7 @@ output_file = sys.argv[2]
 
 
 # create the vector of features
-file_in = open(file_data, "r", encoding="ISO-8859-1")
+file_in = open(file_data, "r")
 features = []
 for line in file_in:
     values = line.split("::")

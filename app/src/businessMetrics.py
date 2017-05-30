@@ -27,6 +27,7 @@ def diversity_novelty_metrics(test_file, train_file, top_n_file, users, amount_n
     # settings output Directory
     output_file = output_directory + '/'
 
+
     command = "cd src/frameworks/vargas/src/ && make && ./getMetrics " \
               "-b " + train_file + " " \
               "-p " + top_n_file + " " \
@@ -35,10 +36,31 @@ def diversity_novelty_metrics(test_file, train_file, top_n_file, users, amount_n
               "-n " + str(amount_n) +\
               " && make clean"
 
-    # os.system(command)
-    subprocess.call(command, shell=True)
+    if not subprocess.call("cd " + output_file , shell=True) or not subprocess.call("cd " + train_file , shell=True) or not subprocess.call("cd " + top_n_file , shell=True):
+        print(output_file)
+        subprocess.call(command, shell=True)
+    else:
+        train_file_change = train_file.replace(" ", "\ ")
+        top_n_file_change = top_n_file.replace(" ", "\ ")
+        test_file_change = test_file.replace(" ", "\ ")
+        output_file_change = output_file.replace(" ", "\ ")
+        command = "cd src/frameworks/vargas/src/ && make && ./getMetrics " \
+              "-b " + train_file_change + " " \
+              "-p " + top_n_file_change + " " \
+              "-o " + output_file_change + "frameOut.txt " \
+              "-l " + test_file_change + " "\
+              "-n " + str(amount_n) +\
+              " && make clean"
+        subprocess.call(command, shell=True)
+        
 
-    file_in = open(output_file + "frameOut.txt.0", "r")
+    #remove \ before space in outputfile
+    output_file = output_file.replace("\ ", " ")
+
+    try:
+        file_in = open(output_file + "frameOut.txt.0", "r")
+    except FileNotFoundError:
+        print("There is a folder in output ṕath with space in name, please rename all folders with space in name")
 
     user_id = []
     novelty = []
@@ -76,7 +98,12 @@ def diversity_novelty_metrics(test_file, train_file, top_n_file, users, amount_n
                 'diversity',
                 output_file + 'diversity.eps', 'Diversity')
 
-    os.system("cd " + output_file + " && rm frameOut.txt.0")
+    # set \ before space in outputfile
+    if not subprocess.call("cd " + output_file + " && rm frameOut.txt.0", shell=True):
+        pass;
+    else:
+        output_file_change = output_file.replace(" ", "\ ")
+        subprocess.call("cd " + output_file_change + " && rm frameOut.txt.0", shell=True)
 
 
 def catalog_coverage(dic_u_test, dic_u_top, matrix_top_n, average_note_user, amount_n, users, items, output_file):
@@ -85,7 +112,7 @@ def catalog_coverage(dic_u_test, dic_u_top, matrix_top_n, average_note_user, amo
     dic_temp = {}
     for i in range(users):
         for j in range(amount_n):
-            if dic_u_test[dic_u_top[i]].get(matrix_top_n[i][j], False) >= average_note_user[i]:
+            if dic_u_test[dic_u_top[i]].get(matrix_top_n[i][j], False) >= average_note_user[dic_u_top[i]]:
                 if not (matrix_top_n[i][j] in dic_temp.keys()):
                     dic_temp[matrix_top_n[i][j]] = bool
                     nrs += 1
@@ -125,7 +152,7 @@ def genre_coverage(dic_u_training, matrix_top_n, average_note_user, users, amoun
     for u, u_id in enumerate(dic_u_training):
         # calculate Ru+
         for i, i_id in enumerate(dic_u_training[u_id].keys()):
-            if dic_u_training[u_id][i_id] >= average_note_user[u]:
+            if dic_u_training[u_id][i_id] >= average_note_user[u_id]:
                 ru = union(ru, dic_features[i_id])
 
         # calculate Su

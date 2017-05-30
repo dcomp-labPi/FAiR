@@ -4,6 +4,7 @@
 import os
 import sys
 import pickle
+import subprocess
 
 from loadData import *
 from featureExtraction import *
@@ -63,8 +64,8 @@ def runFramework(window, config):
     # get the amount of users
     users = len(dic_u_training)
     items = len(dic_i_training)
-    print("usuarios: %d" % users)
-    print("itens: %d" % items)
+    print("users: %d" % users)
+    print("items: %d" % items)
 
     ############################################################################
     # FEATURES EXTRACTION
@@ -73,7 +74,7 @@ def runFramework(window, config):
         print("Domain Profiling")
         config['loader_weight'] += 2
         value = config['loader_weight'] * config['loader_value']
-        text = 'Executing Domain Profiling'
+        text = 'Executing Feature Extraction'
         send_message(loader_window, value, text)
         average_note_user = feature_extraction(dic_u_training, dic_i_training, users, items, amount_ratings,
                                                output_file, window.parameters)
@@ -139,7 +140,7 @@ def runFramework(window, config):
                 print(name_recommender + ": Effectiveness-based")
                 config['loader_weight'] += 3
                 value = config['loader_weight'] * config['loader_value']
-                text = name_recommender + ': Executing Effectiveness-based'
+                text = name_recommender + ': Executing Quality Analysis'
                 send_message(loader_window, value, text)
                 quality_analysis(dic_u_test, dic_u_top, matrix_top_n,
                                  matrix_ratings, average_note_user, users, amount_n, output_file, window.parameters)
@@ -150,7 +151,7 @@ def runFramework(window, config):
             if window.parameters['diversity_novelty'] or window.parameters['catalog_coverage'] \
                     or window.parameters['serendipity'] or window.parameters['genre_coverage']:
                 # settings output Directory
-                output_directory = output_file + 'Complementary_Dimensions_of_Quality'
+                output_directory = output_file + 'Complementary-Dimensions-of-Quality'
 
                 # create output directory if it does not exist
                 try:
@@ -218,7 +219,7 @@ def runFramework(window, config):
             amount_n = int(window.parameters['file_recommender'][j][2])
 
             # settings output Directory
-            output_directory = output_root + name_recommender + '/Complementary_Dimensions_of_Quality'
+            output_directory = output_root + name_recommender + '/Complementary-Dimensions-of-Quality'
             # create output directory if it does not exist
             try:
                 if not os.path.exists(output_directory):
@@ -242,7 +243,12 @@ def runFramework(window, config):
                                           file_train,
                                           output_file + "file_mymedialite_topn.txt",
                                           users, amount_n, output_file)
-                os.system("cd " + output_file + " && rm file_mymedialite_topn.txt")
+
+                if not subprocess.call("cd " + output_file_change + " && rm file_mymedialite_topn.txt", shell=True):
+                    pass;
+                else:
+                    output_file_change = output_file.replace(" ", "\ ")
+                    subprocess.call("cd " + output_file_change + " && rm file_mymedialite_topn.txt", shell=True)
             else:
                 diversity_novelty_metrics(file_test,
                                           file_train,
@@ -255,10 +261,13 @@ def runFramework(window, config):
     print('Finished')
     frame_path = os.popen("pwd").read().rstrip()
 
+    if "\ " not in frame_path:
+        frame_path = frame_path.replace(" ", "\ ")
+
     with open(frame_path + '/list_file_recommender.txt', 'wb') as fp:
         pickle.dump(window.parameters['file_recommender'], fp)
 
-    os.system("python3 %s %d %d %s %s %r %r %r %r %r %r %r %r" % (
+    command = "python3 %s %d %d %s %s %r %r %r %r %r %r %r %r" % (
         frame_path + "/src/outWindow.py",
         users,
         items,
@@ -272,5 +281,27 @@ def runFramework(window, config):
         window.parameters['genre_coverage'],
         window.parameters['catalog_coverage'],
         window.parameters['serendipity']
-    ))
+    )
+
+    if not subprocess.call("cd " + window.parameters['folder_output'], shell=True):
+        subprocess.call(command, shell=True)
+    else:
+        window.parameters['folder_output'] = window.parameters['folder_output'].replace(" ", "\ ")
+        command = "python3 %s %d %d %s %s %r %r %r %r %r %r %r %r" % (
+            frame_path + "/src/outWindow.py",
+            users,
+            items,
+            frame_path,
+            window.parameters['folder_output'],
+            window.parameters['feature_users'],
+            window.parameters['feature_items'],
+            window.parameters['mae_mse_accuracy'],
+            window.parameters['precision_recall'],
+            window.parameters['diversity_novelty'],
+            window.parameters['genre_coverage'],
+            window.parameters['catalog_coverage'],
+            window.parameters['serendipity']
+        )
+        subprocess.call(command, shell=True)
+
     window.loader_window.closeCallback()

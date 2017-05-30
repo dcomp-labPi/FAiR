@@ -14,7 +14,7 @@ from plotGraphs import plot_graphs_bar
 def feature_extraction(dic_u_training, dic_i_training, users, items, amount_ratings, output_file, parameters):
 
     # settings output Directory
-    output_directory = output_file + 'Domain_Profiling'
+    output_directory = output_file + 'Domain-Profiling'
 
     # create output directory if it does not exist
     try:
@@ -60,8 +60,10 @@ def feature_extraction(dic_u_training, dic_i_training, users, items, amount_rati
                     output_file + 'popularity.eps', 'Popularity')
 
         # average note of items
-        historic[historic == 0] = 1
-        vector_analysis = sum_ratings / historic
+        vector_analysis = np.zeros(items)
+        vector_analysis[historic != 0] = sum_ratings[historic != 0] / historic[historic != 0]
+        #historic[historic == 0] = 1
+        #vector_analysis = sum_ratings / historic
         # sorts the elements
         vector_analysis = np.sort(vector_analysis)[::-1]
         vector_analysis = np.array(vector_analysis).reshape(1, items)
@@ -91,19 +93,19 @@ def feature_extraction(dic_u_training, dic_i_training, users, items, amount_rati
     ############################################################################
     #  Features of Users
     ############################################################################
-    average_note = None
+    average_note = {}
     if parameters['feature_users']:
         # historic of user consumption
         historic = np.zeros(users)
-        sum_ratings = np.array(historic)
         variance = np.empty(users)
         # ratings_no_zeros for calculate probability of ratings
         ratings_no_zeros = []
         for i, v in enumerate(dic_u_training):
+            sum_ratings = 0
             historic[i] = len(dic_u_training[v].keys())
             vector_aux = []
             for j, w in enumerate(dic_u_training[v].keys()):
-                sum_ratings[i] += dic_u_training[v][w]
+                sum_ratings += dic_u_training[v][w]
                 if dic_u_training[v][w] != 0:
                     vector_aux.append(dic_u_training[v][w])
                     ratings_no_zeros.append(dic_u_training[v][w])
@@ -111,6 +113,13 @@ def feature_extraction(dic_u_training, dic_i_training, users, items, amount_rati
                 variance[i] = np.var(vector_aux)
             else:
                 variance[i] = 0
+
+            # average note of user
+            hist = historic[i]
+            if hist == 0:
+                hist = 1
+            average_note[v] = sum_ratings / hist
+
         vector_analysis = np.array(historic)
         vector_analysis = np.sort(vector_analysis)[::-1]
         vector_analysis = np.array(vector_analysis).reshape(1, users)
@@ -123,9 +132,7 @@ def feature_extraction(dic_u_training, dic_i_training, users, items, amount_rati
                     output_file + 'historic.eps', 'Consumption history')
 
         # average note of user
-        historic[historic == 0] = 1
-        vector_analysis = sum_ratings / historic
-        average_note = np.array(vector_analysis)
+        vector_analysis = np.array(list(average_note.values()), dtype=float)
         # sorts the elements
         vector_analysis = np.sort(vector_analysis)[::-1]
         vector_analysis = np.array(vector_analysis).reshape(1, users)
@@ -265,16 +272,10 @@ def feature_extraction(dic_u_training, dic_i_training, users, items, amount_rati
 
 def average_note_users(dic_u_training, users):
     # historic of user consumption
-    historic = np.zeros(users)
-    sum_ratings = np.array(historic)
+    average_note = {}
     for i, v in enumerate(dic_u_training):
-        historic[i] = len(dic_u_training[v].keys())
-        for j, w in enumerate(dic_u_training[v].keys()):
-            sum_ratings[i] += dic_u_training[v][w]
 
-    # average note of user
-    historic[historic == 0] = 1
-    vector_analysis = sum_ratings / historic
-    average_note = np.array(vector_analysis)
+        historic = list(dic_u_training[v].values())
+        average_note[v] = np.mean(historic)
 
     return average_note

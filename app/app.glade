@@ -648,7 +648,7 @@
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkCheckButton" id="chkEnableQualityAnalysis">
-                    <property name="label" translatable="yes">Enable Quality Analysis</property>
+                    <property name="label" translatable="yes">Enable Effectiveness-based</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -713,7 +713,7 @@ harmonic mean of precision and recall, Average precision, Mean average precision
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkCheckButton" id="chkEnableBusinessMetrics">
-                    <property name="label" translatable="yes">Enable Business Metrics</property>
+                    <property name="label" translatable="yes">Enable Complementary Dimensions of Quality </property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -813,7 +813,7 @@ harmonic mean of precision and recall, Average precision, Mean average precision
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkCheckButton" id="chkEnableFeatureExtraction">
-                    <property name="label" translatable="yes">Enable Feature Extraction</property>
+                    <property name="label" translatable="yes">Enable Domain Profiling</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
